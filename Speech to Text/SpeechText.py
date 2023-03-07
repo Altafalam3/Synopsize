@@ -1,3 +1,4 @@
+# convert .mp3 to .wav to text if it is .mp3
 import speech_recognition as sr
 # from pydub import AudioSegment
 

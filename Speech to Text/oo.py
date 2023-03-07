@@ -1,3 +1,6 @@
+# NOT WORKING
+#direct tried mp3 to text
+
 import speech_recognition as sr
 import soundfile as sf
 
