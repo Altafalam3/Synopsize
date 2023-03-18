@@ -1,6 +1,7 @@
 import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
+nltk.download('wordnet')
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -20,7 +21,7 @@ tokens = [lemmatizer.lemmatize(
 tfidf = TfidfVectorizer()
 tfidf.fit(tokens)
 
-keywords = tfidf.get_feature_names()
+keywords = tfidf.get_feature_names_out()
 top_keywords = keywords[:3]  # Select the top 3 keywords
 
 # Generate summary
