@@ -1,5 +1,6 @@
 import nltk
 from nltk.corpus import stopwords
+nltk.download('stopwords')
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
