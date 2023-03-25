@@ -1,48 +1,40 @@
+# just eliminating lines directly not efficient moderate chota kr rha
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
+from collections import Counter
 from heapq import nlargest
 
-stopwords = list(STOP_WORDS)
+doc = """Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use to progressively improve their performance on a specific task. Machine learning algorithms build a mathematical model of sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to perform the task. Machine learning algorithms are used in the applications of email filtering, detection of network intruders, and computer vision, where it is infeasible to develop an algorithm of specific instructions for performing the task. Machine learning is closely related to computational statistics, which focuses on making predictions using computers. The study of mathematical optimization delivers methods, theory and application domains to the field of machine learning. Data mining is a field of study within machine learning, and focuses on exploratory data analysis through unsupervised learning. In its application across business problems, machine learning is also referred to as predictive analytics."""
+
 nlp = spacy.load('en_core_web_sm')
+doc = nlp(doc)
 
-#!pip install -U spacy
-#!python -m spacy download en_core_web_sm
+# Use set() to eliminate duplicates
+stop_word  = list(STOP_WORDS) 
+punctuation = list(punctuation)
 
+stopwords = set(stop_word+punctuation)
 
-def get_summary(text, length):
-    doc = nlp(text)
-    tokens = [token.text for token in doc]
-    word_frequencies = {}
-    for word in doc:
-        if word.text.lower() not in stopwords:
-            if word.text.lower() not in punctuation:
-                if word.text not in word_frequencies.keys():
-                    word_frequencies[word.text] = 1
-                else:
-                    word_frequencies[word.text] += 1
-    max_frequency = max(word_frequencies.values())
-    for word in word_frequencies.keys():
-        word_frequencies[word] = word_frequencies[word]/max_frequency
-    sentence_tokens = [sent for sent in doc.sents]
-    sentence_scores = {}
-    for sent in sentence_tokens:
-        for word in sent:
-            if word.text.lower() in word_frequencies.keys():
-                if sent not in sentence_scores.keys():
-                    sentence_scores[sent] = word_frequencies[word.text.lower()]
-                else:
-                    sentence_scores[sent] += word_frequencies[word.text.lower()]
-    select_length = int(len(sentence_tokens)*length/100)
-    summary = nlargest(select_length, sentence_scores, key=sentence_scores.get)
-    final_summary = [word.text for word in summary]
-    summary = ' '.join(final_summary)
-    print(summary)
-    return summary
+# Use list comprehension for efficiency
+keyword = [token.text for token in doc if token.text.lower() not in stopwords and token.pos_ in ['PROPN', 'ADJ', 'NOUN', 'VERB']]
 
+freq_word = Counter(keyword)
 
-tex = "hello hello hello how are you hello."
-print(tex, "\n \n")
+# Use variable instead of repeating function call
+max_freq = freq_word.most_common(1)[0][1]
 
-summ = get_summary(tex,3)
-print(summ)
+# Use dictionary comprehension for efficiency
+freq_word = {word: freq / max_freq for word, freq in freq_word.items()}
+
+sent_strength = {}
+for sent in doc.sents:
+    for word in sent:
+        if word.text in freq_word:
+            sent_strength[sent] = sent_strength.get(sent, 0) + freq_word[word.text]
+
+summarized_sentences = nlargest(3, sent_strength, key=sent_strength.get)
+
+final_sentences = [str(sentence) for sentence in summarized_sentences]
+summary = ' '.join(final_sentences)
+print(summary)

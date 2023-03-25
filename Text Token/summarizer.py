@@ -1,3 +1,4 @@
+#working but not efficient boht chota kr de rha hai and as it is line utha rha
 import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
@@ -7,7 +8,7 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Example input text
-input_text = "This is an example text about a meeting. The meeting discussed various topics including Python, natural language processing, and text summarization. The participants in the meeting found the discussion to be informative and engaging."
+input_text = 'Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use to progressively improve their performance on a specific task. Machine learning algorithms build a mathematical model of sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to perform the task. Machine learning algorithms are used in the applications of email filtering, detection of network intruders, and computer vision, where it is infeasible to develop an algorithm of specific instructions for performing the task. Machine learning is closely related to computational statistics, which focuses on making predictions using computers. The study of mathematical optimization delivers methods, theory and application domains to the field of machine learning. Data mining is a field of study within machine learning, and focuses on exploratory data analysis through unsupervised learning. In its application across business problems, machine learning is also referred to as predictive analytics.'
 
 # Preprocess the input text
 stop_words = set(stopwords.words('english'))
