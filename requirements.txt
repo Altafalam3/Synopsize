@@ -1,0 +1,4 @@
+tk
+pydub
+SpeechRecognition
+spacy
