@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 from pydub import AudioSegment
 import spacy
+
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
 from collections import Counter
@@ -104,6 +105,7 @@ class AudioToTextGUI:
 
             final_sentences = [str(sentence) for sentence in summarized_sentences]
             self.summary = ' '.join(final_sentences)
+            print("Summary is....")
             print(self.summary)
 
             # # write the converted speech to a file
