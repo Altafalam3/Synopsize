@@ -2,7 +2,7 @@ from transformers import BartTokenizer, BartForConditionalGeneration
 
 MODEL_PATH = "./synopsize-v1.0"
 
-# Load tokenizer and model configuration
+# Load tokenizer and model configuration for folder
 tokenizer = BartTokenizer.from_pretrained(MODEL_PATH, merges_file=f"{MODEL_PATH}/merges.txt")
 config = BartForConditionalGeneration.from_pretrained(MODEL_PATH).config
 
