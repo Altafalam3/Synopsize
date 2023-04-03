@@ -9,7 +9,7 @@ from tkinter import font
 root = tk.Tk()
 root.configure(background='#242124')
 root.title("Summarizer using Audio")
-root.geometry("1000x600")
+root.geometry("1000x900")
 background_image = PhotoImage(file="bg for python.png")
 background_label = Label(root, image=background_image)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -31,15 +31,15 @@ menu_font = font.Font(family="Arial")
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)
 
-main_page= tk.Menu(menu_bar, tearoff=0)
+main_page= tk.Menu(menu_bar, tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="Index", menu=main_page)
 main_page.add_command(label="Index",command=extra)
 
-about_menu = tk.Menu(menu_bar,tearoff=0)
+about_menu = tk.Menu(menu_bar,tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="About", menu=about_menu)
 about_menu.add_command(label="About",command=com_as)
 
-audio_menu = tk.Menu(menu_bar, tearoff=0)
+audio_menu = tk.Menu(menu_bar, tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="Summarizer using Text", menu=audio_menu)
 audio_menu.add_command(label="Summarize Text",command=SUT)
 

@@ -29,17 +29,22 @@ menu_font = font.Font(family="Arial",font=50)
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)
 
-about_menu = tk.Menu(menu_bar,tearoff=0)
+about_menu = tk.Menu(menu_bar,tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="About", menu=about_menu)
 about_menu.add_command(label="About",command=com_as)
 
-text_menu = tk.Menu(menu_bar, tearoff=0)
+text_menu = tk.Menu(menu_bar, tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="Summarizer using Text", menu=text_menu)
 text_menu.add_command(label="Summarize Text",command=SUT)
 
-audio_menu = tk.Menu(menu_bar, tearoff=0)
+audio_menu = tk.Menu(menu_bar, tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="Summarizer using Audio", menu=audio_menu)
 audio_menu.add_command(label="Summarize Audio",command=SUA)
+
+about_menu = tk.Menu(menu_bar,tearoff=0,foreground='purple',bg='#F3F0Ee', font=('Arial', 16, 'underline','italic','bold'))
+menu_bar.add_cascade(label="GET PRO", menu=about_menu)
+about_menu.add_command(label="GET PRO",command=com_as)
+
 
 
 
