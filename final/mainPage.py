@@ -87,7 +87,7 @@ class AudioToTextGUI:
             freq_word = {word: freq / max_freq for word, freq in freq_word.items()}
             
             # compute the summary length based on the input message length and the summary percentage
-            if(text.sents > 2):
+            if(len(list(text.sents)) > 2):
                 summary_length = int(len(list(text.sents)) * SUMMARY_PERCENTAGE)
             else:
                 summary_length = 2
