@@ -4,7 +4,9 @@ import tkinter as tk
 
 
 class Recorder:
+
     def __init__(self):
+
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 1
         self.RATE = 44100
@@ -33,10 +35,16 @@ class Recorder:
         self.stop_button = tk.Button(
             self.root, text="Stop Recording", command=self.stop_recording, state=tk.DISABLED)
         self.stop_button.pack()
+        self.play_button = tk.Button(
+            self.root, text="Play Recording", command=self.play_recording)
+        self.play_button.pack()
+
+        # Start the main event loop
 
         self.root.mainloop()
 
     def start_recording(self):
+        print("Initializing Recorder...")
         # Disable record button and enable stop button
         self.record_button.config(state=tk.DISABLED)
         self.stop_button.config(state=tk.NORMAL)
@@ -80,3 +88,30 @@ class Recorder:
 
     def stop_recording(self):
         self.is_recording = False
+
+    def play_recording(self):
+        # Open the recorded audio file
+        wf = wave.open("meeting.wav", 'rb')
+
+        # Open audio stream
+        self.stream = self.audio.open(format=self.audio.get_format_from_width(wf.getsampwidth()),
+                                      channels=wf.getnchannels(),
+                                      rate=wf.getframerate(),
+                                      output=True)
+
+        # Play audio in chunks
+        data = wf.readframes(self.CHUNK)
+        while data:
+            self.stream.write(data)
+            data = wf.readframes(self.CHUNK)
+
+        # Stop playing audio
+        self.stream.stop_stream()
+        self.stream.close()
+        self.audio.terminate()
+
+
+if __name__ == "__main__":
+    print("Creating Recorder instance...")
+    r = Recorder()
+    print("Recorder instance created.")

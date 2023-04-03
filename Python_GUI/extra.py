@@ -41,7 +41,7 @@ audio_menu = tk.Menu(menu_bar, tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="Summarizer using Audio", menu=audio_menu)
 audio_menu.add_command(label="Summarize Audio",command=SUA)
 
-about_menu = tk.Menu(menu_bar,tearoff=0,foreground='purple',bg='#F3F0Ee', font=('Arial', 16, 'underline','italic','bold'))
+about_menu = tk.Menu(menu_bar,tearoff=0,foreground='purple',background='#F3F0Ee', font=('Arial', 16, 'underline','italic','bold'))
 menu_bar.add_cascade(label="GET PRO", menu=about_menu)
 about_menu.add_command(label="GET PRO",command=com_as)
 
