@@ -107,16 +107,11 @@ def summarize_text(doc):
         final_sentences = [str(sentence) for sentence in summarized_sentences]
         summary = ' '.join(final_sentences)
         return summary
-        
-
         # Update the file name label
-        filename_label.configure(text="File: " + file_path)
-
+        # filename_label.configure(text="File: " + file_path)
 
 def clear_filename():
     filename_label.configure(text="")
-
-
 
 # summary = openai.summarise(str(doc))
 
@@ -180,9 +175,9 @@ bbutto.pack()
 # bbutto.pack(pady=0)
 bbutto.place(relx=0.24, rely=0.47)
 
-T = Text(root, height=4, width=70, bd=2.3, relief='sunken', bg='#F3F0E0')
-T.pack()
-T.place(relx=0.37, rely=0.47)
+# T = Text(root, height=4, width=70, bd=2.3, relief='sunken', bg='#F3F0E0')
+# T.pack()
+# T.place(relx=0.37, rely=0.47)
 
 # Create a label to display the uploaded file name
 filename_label = tk.Label(root, text="")
@@ -201,13 +196,13 @@ dbutto = tk.Button(root, text="summarize pro", command="", height=1,
 dbutto.pack(pady=0)
 dbutto.place(relx=0.2, rely=0.53)
 
-scrollbar = tk.Scrollbar(root)
-scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+# scrollbar = tk.Scrollbar(root)
+# scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 T = Text(root, wrap=WORD, height=9,
          width=105, bd=7, relief='raise', bg='#F3F0E0')
-scrollbar = Scrollbar(root, command=T.yview)
-T.configure(yscrollcommand=scrollbar.set)
-scrollbar.pack(side=RIGHT, fill=Y)
+# scrollbar = Scrollbar(root, command=T.yview)
+# T.configure(yscrollcommand=scrollbar.set)
+# scrollbar.pack(side=RIGHT, fill=Y)
 T.pack(side=LEFT, fill=BOTH, expand=True)
 # doc = open_file()
 # if doc:
