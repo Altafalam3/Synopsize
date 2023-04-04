@@ -123,8 +123,8 @@ def button_function():
 
 #Main Page Logo
 mainlogo = customtkinter.CTkImage(
-    light_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
-    dark_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
+    light_image=Image.open("./bgfF.png"),
+    dark_image=Image.open("./bgfF.png"),
     size=(90, 90)
 )
 
