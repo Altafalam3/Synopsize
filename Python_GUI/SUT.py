@@ -1,4 +1,6 @@
 import spacy
+# import streamlit as st
+# from transformers import pipeline
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
 from collections import Counter
@@ -10,7 +12,7 @@ from tkcalendar import Calendar
 from tkinter import ttk, filedialog
 from tkinter.filedialog import askopenfile
 from tkinter import font
-
+from tkinter import messagebox
 
 
 doc = """Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use to progressively improve their performance on a specific task. Machine learning algorithms build a mathematical model of sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to perform the task. Machine learning algorithms are used in the applications of email filtering, detection of network intruders, and computer vision, where it is infeasible to develop an algorithm of specific instructions for performing the task. Machine learning is closely related to computational statistics, which focuses on making predictions using computers. The study of mathematical optimization delivers methods, theory and application domains to the field of machine learning. Data mining is a field of study within machine learning, and focuses on exploratory data analysis through unsupervised learning. In its application across business problems, machine learning is also referred to as predictive analytics.
@@ -75,7 +77,7 @@ def extra():
 root.title("Summarizer using Text")
 root.geometry("1000x900")
 
-# background_image =PhotoImage(file="bg_for_python.png")
+# background_image = PhotoImage(file="./bg_for_python.png")
 # background_label = Label(root, image=background_image)
 # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -125,7 +127,7 @@ def save_text():
     with open("file.txt", "w") as f:
         f.write(text_to_save)
         messagebox.showinfo("Success", "File saved successfully!")
-        
+
 
 # Add Button and Label
 calb = Button(root, text="Get Date", command=grad_date,
@@ -152,6 +154,10 @@ cbutto = tk.Button(root, text="summarize", command="", height=1,
                    width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12))
 cbutto.pack(pady=0)
 cbutto.place(relx=0.01, rely=0.53)
+dbutto = tk.Button(root, text="summarize pro", command="", height=1,
+                   width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12))
+dbutto.pack(pady=0)
+dbutto.place(relx=0.2, rely=0.53)
 scrollbar = tk.Scrollbar(root)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 T = Text(root, wrap=WORD, height=9,
