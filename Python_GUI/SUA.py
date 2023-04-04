@@ -13,6 +13,7 @@ from string import punctuation
 from collections import Counter
 from heapq import nlargest
 import speech_recognition as sr
+import openai
 
 
 root = tk.Tk()
@@ -130,6 +131,8 @@ def convert_to_text():
                 seen_sentences.add(str(sentence))
         final_sentences = [str(sentence) for sentence in summarized_sentences]
         summary = ' '.join(final_sentences)
+        summary = openai.summarise(str(text))
+
         print("Summary is....")
         print(summary)
 
