@@ -6,11 +6,11 @@ root = tk.Tk()
 root.configure(background='black')
 root.title("Meeting Summarizer")
 
-background_image = PhotoImage(file='bgfF.png')
+# background_image = PhotoImage(file='bgfF.png')
 
-# create a label widget to display the image
-background_label = Label(root, image=background_image)
-background_label.place(x=0, y=0, relwidth=1, relheight=1)
+# # create a label widget to display the image
+# background_label = Label(root, image=background_image)
+# background_label.place(x=0, y=0, relwidth=1, relheight=1)
 def com_as():
    root.destroy()
    import aboutus
@@ -41,9 +41,6 @@ audio_menu = tk.Menu(menu_bar, tearoff=0,foreground='purple',font=12)
 menu_bar.add_cascade(label="Summarizer using Audio", menu=audio_menu)
 audio_menu.add_command(label="Summarize Audio",command=SUA)
 
-about_menu = tk.Menu(menu_bar,tearoff=0,foreground='purple',background='#F3F0Ee', font=('Arial', 16, 'underline','italic','bold'))
-menu_bar.add_cascade(label="GET PRO", menu=about_menu)
-about_menu.add_command(label="GET PRO",command=com_as)
 
 
 
