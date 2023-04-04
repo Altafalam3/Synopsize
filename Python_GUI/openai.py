@@ -9,7 +9,7 @@ def summarise(text):
 
     # Set the message you want to send to the webhook
 
-    message = text + '     Can you summarize this text?'
+    message = 'summarize : ' + text
 
     # Set the JSON payload to be sent with the request
     payload = {'Body': message}
