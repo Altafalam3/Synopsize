@@ -33,11 +33,17 @@ def browse_file():
         doc = nlp(text)
         file.close()
         print("%d characters in this file" % len(doc))
-        
-        
-def summarize_text(doc):
+
+
+def summarize_text():
+    global doc
+    if 'doc' not in globals():
+        doc = T.get("1.0", END)
+    if not doc:
+        print("No text found!")
+        return
         nlp = spacy.load('en_core_web_sm')
-        nlp(doc)
+        doc = nlp(doc)
 
         # Use set() to eliminate duplicates
         stop_word = list(STOP_WORDS)
@@ -77,8 +83,6 @@ def summarize_text(doc):
 
         final_sentences = [str(sentence) for sentence in summarized_sentences]
         summary = ' '.join(final_sentences)
-        return summary
-        
 
         # Update the file name label
         filename_label.configure(text="File: " + file_path)
@@ -86,9 +90,6 @@ def summarize_text(doc):
 
 def clear_filename():
     filename_label.configure(text="")
-
-
-
 
 
 def com_as():
@@ -139,6 +140,7 @@ cal = Calendar(root, selectmode='day', year=2020, month=5, day=22)
 cal.pack(pady=20)
 cal.place(relx=0.1, rely=0.075678)
 
+
 def grad_date():
     date.config(text="Selected Date is: " + cal.get_date())
 
@@ -178,7 +180,7 @@ filename_label.pack()
 
 cbutto = tk.Button(root, text="summarize", height=1,
                    width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12),
-                   command=lambda: T.insert(END, summarize_text(doc)))
+                   command=lambda: T.insert(END, summarize_text()))
 cbutto.pack()
 cbutto.pack(pady=0)
 cbutto.place(relx=0.01, rely=0.53)
