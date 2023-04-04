@@ -6,6 +6,15 @@ from tkinter import ttk, filedialog
 from tkinter.filedialog import askopenfile
 from tkinter import font
 
+from pydub import AudioSegment
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from collections import Counter
+from heapq import nlargest
+import speech_recognition as sr
+
+
 root = tk.Tk()
 root.configure(background='#242124')
 root.title("Summarizer using Audio")
@@ -28,7 +37,6 @@ def SUT():
 def extra():
     root.destroy()
     import extra
-
 
 heading_font = font.Font(family="Arial", weight="bold")
 menu_font = font.Font(family="Arial")
@@ -57,20 +65,28 @@ cal = Calendar(root, selectmode='day', year=2020, month=5, day=22)
 cal.pack(pady=20)
 cal.place(relx=0.1, rely=0.075678)
 
+cal = Calendar(root, selectmode = 'day',year = 2020, month = 5,day = 22)
+cal.pack(pady = 20)
+cal.place(relx=0.1,rely=0.075678)
 
+
+def browse_file():
+    filename = filedialog.askopenfilename(filetypes=(
+        ("WAV files", "*.wav"), ("All files", "*.*")))
+    if filename:
+        print("working")
+        browseInput.delete(1.0, END)  # Delete current value
+        browseInput.insert(END, filename)  # Insert new value
 def open_file():
-    file = filedialog.askopenfile(
-        mode='r', filetypes=[('Python Files', '*.py')])
-    if file:
-        content = file.read()
-        file.close()
-        print("%d characters in this file" % len(content))
-
+   file = filedialog.askopenfile(mode='r', filetypes=[('Python Files', '*.py')])
+   if file:
+      content = file.read()
+      file.close()
+      print("%d characters in this file" % len(content))
 
 def grad_date():
-    date.config(text="Selected Date is: " + cal.get_date())
-
-
+    date.config(text = "Selected Date is: " + cal.get_date())
+ 
 # Add Button and Label
 calb = Button(root, text="Get Date", command=grad_date,
               font=65, bg='#C7B4F7', bd=4.5, relief='raise')
@@ -85,15 +101,14 @@ file_label = Label(root, text="Pick The Wave File->",
                    font="allerta_stencil", bg='#242124', foreground='white', pady=0)
 file_label.place(relx=0.01, rely=0.4567)
 
-bbutto = ttk.Button(root, text="Browse->", command=open_file)
+bbutto = tk.Button(root, text="Browse->", command=browse_file)
 bbutto.pack(pady=0)
-bbutto.place(relx=0.24, rely=0.47)
-T = Text(root, height=1.3, width=70, bd=2.3, relief='sunken', bg='#F3F0E0')
+bbutto.place(relx=0.24,rely=0.47)
+T = Text(root, height = 1.3, width =70, bd=2.3, relief='sunken',bg='#F3F0E0')
 T.pack()
-T.place(relx=0.37, rely=0.47)
-T.place(relx=0.37, rely=0.47)
-cbutto = tk.Button(root, text="Summarize", command="", height=1,
-                   width=14, bg='#C7B4F7', bd=4, relief='raise', font=("Arial", 12))
+T.place(relx=0.37,rely=0.47)
+T.place(relx=0.37,rely=0.47)
+cbutto = tk.Button(root, text="Summarize", command="",height=1,width=14,bg='#C7B4F7',bd=4, relief='raise',font = ("Arial", 12))
 cbutto.pack(pady=20)
 cbutto.place(relx=0.01, rely=0.532)
 dbutto = tk.Button(root, text="Summarize pro", command="", height=1,
@@ -101,9 +116,9 @@ dbutto = tk.Button(root, text="Summarize pro", command="", height=1,
 dbutto.pack(pady=0)
 dbutto.place(relx=0.2, rely=0.53)
 
-T = Text(root, height=9, width=105, bd=7, relief='raise', bg='#F3F0E0')
+T = Text(root, height = 9, width = 105, bd=7, relief='raise',bg='#F3F0E0')
 T.pack()
-T.place(relx=0.07, rely=0.62)
+T.place(relx=0.07,rely=0.62)
 root.geometry("1000x600")
 cbutto = tk.Button(root, text="Download the summary", command="", height=1,
                    width=20, bg='#C7B4F7', bd=4.5, relief='raise', font=("Arial", 13))
@@ -112,6 +127,8 @@ cbutto.place(relx=0.77, rely=0.9)
 
 
 # create a PhotoImage object from the image file
+
+
 
 
 root.mainloop()

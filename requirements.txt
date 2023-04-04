@@ -2,6 +2,7 @@ tk
 pydub
 SpeechRecognition
 spacy
+customtkinter
 
 certifi==2022.12.7
 charset-normalizer==3.1.0
