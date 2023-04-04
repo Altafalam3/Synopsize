@@ -24,6 +24,30 @@ root = Tk()
 
 root.configure(background='#242124')
 # Define global variables
+
+def com_as():
+    root.destroy()
+    import aboutus
+
+
+def SUA():
+    root.destroy()
+    import SUA
+
+
+def extra():
+    root.destroy()
+    import extra
+
+
+root.title("Summarizer using Text")
+root.geometry("1000x900")
+
+# background_image = PhotoImage(file="./bg_for_python.png")
+# background_label = Label(root, image=background_image)
+# background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+
 doc = None
 input_field = None
 output_field = None
@@ -38,8 +62,8 @@ def browse_file():
         doc = nlp(text)
         file.close()
         print("%d characters in this file" % len(doc))
-        
-        
+
+
 def summarize_text(doc):
         nlp = spacy.load('en_core_web_sm')
         nlp(doc)
@@ -94,30 +118,9 @@ def clear_filename():
 
 
 
-summary = openai.summarise(str(doc))
+# summary = openai.summarise(str(doc))
 
 
-def com_as():
-    root.destroy()
-    import aboutus
-
-
-def SUA():
-    root.destroy()
-    import SUA
-
-
-def extra():
-    root.destroy()
-    import extra
-
-
-root.title("Summarizer using Text")
-root.geometry("1000x900")
-
-# background_image = PhotoImage(file="./bg_for_python.png")
-# background_label = Label(root, image=background_image)
-# background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 
 heading_font = font.Font(family="Arial", weight="bold")
@@ -128,6 +131,7 @@ root.config(menu=menu_bar)
 main_page = tk.Menu(menu_bar, tearoff=0, foreground='purple', font=12)
 menu_bar.add_cascade(label="Index", menu=main_page)
 main_page.add_command(label="Index", command=extra)
+
 about_menu = tk.Menu(menu_bar, tearoff=0, foreground='purple', font=12)
 menu_bar.add_cascade(label="About", menu=about_menu)
 about_menu.add_command(label="About", command=com_as)
@@ -170,13 +174,16 @@ date.place(relx=0.67, rely=0.21)
 file_label = Label(root, text="Enter the text->",
                    font="allerta_stencil", bg='#242124', foreground='white', pady=0)
 file_label.place(relx=0.01, rely=0.4567)
+
 bbutto = ttk.Button(root, text="Browse->", command=browse_file)
 bbutto.pack()
-bbutto.pack(pady=0)
+# bbutto.pack(pady=0)
 bbutto.place(relx=0.24, rely=0.47)
+
 T = Text(root, height=4, width=70, bd=2.3, relief='sunken', bg='#F3F0E0')
 T.pack()
 T.place(relx=0.37, rely=0.47)
+
 # Create a label to display the uploaded file name
 filename_label = tk.Label(root, text="")
 filename_label.pack()
@@ -186,12 +193,14 @@ cbutto = tk.Button(root, text="summarize", height=1,
                    width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12),
                    command=lambda: T.insert(END, summarize_text(doc)))
 cbutto.pack()
-cbutto.pack(pady=0)
+# cbutto.pack(pady=0)
 cbutto.place(relx=0.01, rely=0.53)
+
 dbutto = tk.Button(root, text="summarize pro", command="", height=1,
                    width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12))
 dbutto.pack(pady=0)
 dbutto.place(relx=0.2, rely=0.53)
+
 scrollbar = tk.Scrollbar(root)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 T = Text(root, wrap=WORD, height=9,
