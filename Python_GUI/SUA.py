@@ -79,12 +79,6 @@ def browse_file():
     T.insert(0, filename)
     cbutto.config(state=tk.DISABLED)
     Summ.delete("1.0", tk.END)
-    # filename = filedialog.askopenfilename(filetypes=(
-    #     ("WAV files", "*.wav"), ("All files", "*.*")))
-    # if filename:
-    #     print("working")
-    #     browseInput.delete(1.0, END)  # Delete current value
-    #     browseInput.insert(END, filename)  # Insert new value
 
 def convert_to_text():
     global T
@@ -156,7 +150,7 @@ def download_text():
 
 def grad_date():
     date.config(text = "Selected Date is: " + cal.get_date())
- 
+
 # Add Button and Label
 calb = Button(root, text="Get Date", command=grad_date,
               font=65, bg='#C7B4F7', bd=4.5, relief='raise')
