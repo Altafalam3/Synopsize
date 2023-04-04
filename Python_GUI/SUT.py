@@ -14,6 +14,7 @@ from tkinter.filedialog import askopenfile
 from tkinter import font
 from tkinter import messagebox
 from collections import Counter
+import openai
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -22,7 +23,11 @@ SUMMARY_PERCENTAGE = 0.25
 root = Tk()
 
 root.configure(background='#242124')
-
+# Define global variables
+doc = None
+input_field = None
+output_field = None
+filename_label = None
 
 def browse_file():
     file = filedialog.askopenfile(
@@ -89,6 +94,7 @@ def clear_filename():
 
 
 
+summary = openai.summarise(str(doc))
 
 
 def com_as():
