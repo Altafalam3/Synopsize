@@ -81,7 +81,71 @@ def browse_file():
     cbutto.config(state=tk.DISABLED)
     Summ.delete("1.0", tk.END)
 
+
 def convert_to_text():
+    global T
+    global cbutto
+    global Summ
+    audio_file = T.get()
+    try:
+        r = sr.Recognizer()
+        with sr.AudioFile(audio_file) as source:
+            audio = r.record(source)
+        text = r.recognize_google(audio)
+        print("Converted audio is: " + text)
+        # define the summary length as a percentage of the input message
+        SUMMARY_PERCENTAGE = 0.25
+        nlp = spacy.load('en_core_web_sm')
+        text = nlp(text)
+        # Use set() to eliminate duplicates
+        stop_word = list(STOP_WORDS)
+        punctuations = list(punctuation)
+        stopwords = set(stop_word+punctuations)
+
+        # Use list comprehension for efficiency
+        keyword = [token.text for token in text if token.text.lower(
+        ) not in stopwords and token.pos_ in ['PROPN', 'ADJ', 'NOUN', 'VERB']]
+
+        freq_word = Counter(keyword)
+
+        # Use variable instead of repeating function call
+        max_freq = freq_word.most_common(1)[0][1]
+
+        # Use dictionary comprehension for efficiency
+        freq_word = {word: freq / max_freq for word, freq in freq_word.items()}
+
+        # compute the summary length based on the input message length and the summary percentage
+        if (len(list(text.sents)) > 2):
+            summary_length = int(len(list(text.sents)) * SUMMARY_PERCENTAGE)
+        else:
+            summary_length = 2
+        sent_strength = {}
+        for sent in text.sents:
+            for word in sent:
+                if word.text in freq_word:
+                    sent_strength[sent] = sent_strength.get(
+                        sent, 0) + freq_word[word.text]
+        # filter out duplicate sentences from the top sentences
+        summarized_sentences = []
+        seen_sentences = set()
+        for sentence in nlargest(summary_length, sent_strength, key=sent_strength.get):
+            if str(sentence) not in seen_sentences:
+                summarized_sentences.append(sentence)
+                seen_sentences.add(str(sentence))
+        final_sentences = [str(sentence) for sentence in summarized_sentences]
+        summary = ' '.join(final_sentences)
+        summary = openai.summarise(str(text))
+
+        print("Summary is....")
+        print(summary)
+
+    except Exception as e:
+        print(e)
+
+    if audio_file:
+        Summ.insert(tk.END, summary)
+        cbutto.config(state=tk.NORMAL)
+def convertnlp():
     global T
     global cbutto
     global Summ
@@ -131,7 +195,7 @@ def convert_to_text():
                 seen_sentences.add(str(sentence))
         final_sentences = [str(sentence) for sentence in summarized_sentences]
         summary = ' '.join(final_sentences)
-        summary = openai.summarise(str(text))
+       
 
         print("Summary is....")
         print(summary)
@@ -176,11 +240,11 @@ T = Entry(root, width =70, bd=2.3, relief='sunken',bg='#F3F0E0')
 T.pack()
 T.place(relx=0.37,rely=0.47)
 
-cbutto = tk.Button(root, text="Summarize", command=convert_to_text,height=1,width=14,bg='#C7B4F7',bd=4, relief='raise',font = ("Arial", 12))
+cbutto = tk.Button(root, text="Summarize", command=convertnlp,height=1,width=14,bg='#C7B4F7',bd=4, relief='raise',font = ("Arial", 12))
 cbutto.pack(pady=20)
 cbutto.place(relx=0.01, rely=0.532)
 
-dbutto = tk.Button(root, text="Summarize pro", command="", height=1,
+dbutto = tk.Button(root, text="Summarize pro", command=convert_to_text, height=1,
                    width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12))
 dbutto.pack(pady=0)
 dbutto.place(relx=0.2, rely=0.53)
