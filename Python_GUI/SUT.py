@@ -239,7 +239,7 @@ cbutto.pack()
 # cbutto.pack(pady=0)
 cbutto.place(relx=0.01, rely=0.53)
 
-dbutto = tk.Button(root, text="summarize pro", command="", height=1,
+dbutto = tk.Button(root, text="summarize pro", command=lambda: T.insert(END, summarize_nlp(doc)), height=1,
                    width=13, bg='#C7B4F7', bd=4.2, relief='raise', font=("Arial", 12))
 dbutto.pack(pady=0)
 dbutto.place(relx=0.2, rely=0.53)
