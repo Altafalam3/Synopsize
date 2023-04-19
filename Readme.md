@@ -54,3 +54,7 @@ This application is developed by Sarah, Altaf, Abhigyaan, and Amisha.
 ## Acknowledgments
 
 We would like to thank our professor and classmates for their valuable feedback and support during the development of this project.
+
+## The Team
+
+![WhatsApp Image 2023-04-19 at 8 58 41 PM](https://user-images.githubusercontent.com/98898049/233126024-c12701cb-02e4-42cc-8196-e1b68f8b58e5.jpeg)
