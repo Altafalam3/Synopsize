@@ -3,8 +3,7 @@ import customtkinter #Customised GUI Library
 from customtkinter.windows.ctk_toplevel import CTkToplevel
 from PIL import Image, ImageTk #Python's Imaging Library
 from tkinter import filedialog #File Browsing
-from pydub import AudioSegment #Audio Processing
-import speech_recognition as sr #Speech to Text Library
+from pydub import AudioSegment #Audio Processingimport speech_recognition as sr #Speech to Text Library
 import spacy #Text Analyser
 from spacy.lang.en.stop_words import STOP_WORDS 
 from string import punctuation
@@ -36,18 +35,18 @@ def showTextPage():
 #GUI Elements
 
 #Main Page Logo
-mainlogo = customtkinter.CTkImage(
-    light_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
-    dark_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
-    size=(90, 90)
-)
+# mainlogo = customtkinter.CTkImage(
+#     light_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
+#     dark_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
+#     size=(90, 90)
+# )
 
 logoBtn = customtkinter.CTkButton(
     master=app, 
     text="", 
-    command=button_function,
+    # command=button_function,
     fg_color="transparent",
-    image=mainlogo,
+    # image=mainlogo,
     state="disabled",
 )
 logoBtn.place(relx=0.065, rely=0.090, anchor=tk.CENTER)
@@ -65,7 +64,7 @@ label.place(relx=0.50, rely=0.09, anchor=tk.CENTER)
 infoBtn = customtkinter.CTkButton(
     master=app, 
     text="i", 
-    command=test,
+    # command=test,
     font=("Montserrat SemiBold", 30),
     width=60,
     height=60,

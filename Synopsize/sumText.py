@@ -26,26 +26,26 @@ class CustomToplevel(CTkToplevel):
     #GUI Elements
 
         # Create a PhotoImage object from an image file
-        image = Image.open("/Users/abhigyanbafna/Desktop/Synopsize/bg_for_python.png")
-        photo = ImageTk.PhotoImage(image)
+        # image = Image.open("/Users/abhigyanbafna/Desktop/Synopsize/bg_for_python.png")
+        # photo = ImageTk.PhotoImage(image)
 
         # Create a label widget and set its background image
-        self.label = customtkinter.CTkLabel(self, image=photo)
-        self.label.place(x=0, y=0, relwidth=1, relheight=1)
+        # self.label = customtkinter.CTkLabel(self, image=photo)
+        # self.label.place(x=0, y=0, relwidth=1, relheight=1)
 
         #Main Page Logo
-        self.mainlogo = customtkinter.CTkImage(
-            light_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
-            dark_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
-            size=(90, 90)
-        )
+        # self.mainlogo = customtkinter.CTkImage(
+        #     light_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
+        #     dark_image=Image.open("/Users/abhigyanbafna/Desktop/Synopsize/assets/images/synopsize1500.png"),
+        #     size=(90, 90)
+        # )
 
         self.logoBtn = customtkinter.CTkButton(
             self, 
             text="", 
             command=self.browseFile,
             fg_color="transparent",
-            image=self.mainlogo,
+            # image=self.mainlogo,
             state="disabled",
         )
         self.logoBtn.place(relx=0.065, rely=0.090, anchor=tk.CENTER)
