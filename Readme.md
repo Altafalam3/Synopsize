@@ -12,10 +12,14 @@ Synopsize is a desktop application built using Python's custom tkinter library. 
 - Formatted file with date, time, and title
 
 ## Screenshots
-![Alt text](Synopsize1.png)
+[Synopsize1](https://user-images.githubusercontent.com/98898049/233114966-d22a49ef-a6d6-4d91-ab28-d1b7ddeb6872.png)
+![Synopsize2](https://user-images.githubusercontent.com/98898049/233115113-b7833b01-5269-4b99-82ad-de4a!
+[Synopsize3](https://user-images.githubusercontent.com/98898049/233115178-d5800672-8401-44b7-9a94-e53e26fab2d6.png)
+621ee954.png)
 
 
-## Installation
+## Installation!
+
 
 To install and use the application, you need to have Python and pip installed, custom tkinter, and ffmpeg. Follow the below steps for installation:
 
